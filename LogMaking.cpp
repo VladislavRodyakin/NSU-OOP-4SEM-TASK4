@@ -24,21 +24,21 @@ int UserLog::get_user_id() const { return m_user_id; }
 std::map<size_t, Coordinate> UserLog::get_track() const { return m_track; }
 
 
-Map::Map() {}
+LocationsMap::LocationsMap() {}
 
-Map::Map(std::vector<Location> locations) : m_locations(locations) {}
+LocationsMap::LocationsMap(std::vector<Location> locations) : m_locations(locations) {}
 
-void Map::add_location(const Location& location) { m_locations.push_back(location); }
+void LocationsMap::add_location(const Location& location) { m_locations.push_back(location); }
 
-void Map::add_location(const std::vector<Location>& locations) {
-    m_locations.insert(m_locations.end(), locations.begin(), locations.end());
-}
-
-void Map::add_location(const std::string& name, const Coordinate& point1, const Coordinate& point2) {
+void LocationsMap::add_location(const std::string& name, const Coordinate& point1, const Coordinate& point2) {
     m_locations.emplace_back(name, point1, point2);
 }
 
-std::vector<Location> Map::which_places(const Coordinate& point) const {
+void LocationsMap::add_locations(const std::vector<Location>& locations) {
+    m_locations.insert(m_locations.end(), locations.begin(), locations.end());
+}
+
+std::vector<Location> LocationsMap::which_places(const Coordinate& point) const {
     std::vector<Location> places;
     for (const auto& location : m_locations) {
         if (location.point_in_location(point)) {

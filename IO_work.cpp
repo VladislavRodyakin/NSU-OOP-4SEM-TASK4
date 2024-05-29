@@ -32,9 +32,9 @@ std::vector<UserLog> IOWork::read_user(std::istream& in_stream)
 }
 
 
-Map IOWork::read_map(std::istream& in_stream)
+LocationsMap IOWork::read_map(std::istream& in_stream)
 {
-    Map map;
+    LocationsMap map;
     std::string name;
     float x1, y1, x2, y2;
     while (in_stream >> name >> x1 >> y1 >> x2 >> y2)
@@ -89,7 +89,7 @@ void IOWork::write_places(int user_id, std::map<size_t, std::vector<std::string>
 }
 
 
-std::map<size_t, std::vector<std::string>> TrackCollector::getUserTrack(const Map& map, const UserLog& user, const int& user_id)
+std::map<size_t, std::vector<std::string>> TrackCollector::getUserTrack(const LocationsMap& map, const UserLog& user, const int& user_id)
 {
     std::map<size_t, std::vector<std::string>> user_track;
     for (auto& track : user.get_track())

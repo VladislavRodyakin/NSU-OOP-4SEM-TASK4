@@ -27,7 +27,7 @@ int main(){
     TrackCollector track_collector;
 
     std::vector<UserLog> usersLogs = io_work.read_user(user_inp);
-    Map map = io_work.read_map(map_inp);
+    LocationsMap map = io_work.read_map(map_inp);
 
     for (auto& user : usersLogs)
     {
